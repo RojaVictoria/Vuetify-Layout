@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <Navbar/>
+    <v-container>
+      <v-row no-gutters>
+        <v-col
+          v-for="character in $store.state.characters" :key="character.id"
+          cols="12"
+          sm="4"
+        >
+          <v-card class="pa-2" outlined tile>
+            <v-img :src="character.src" height="350px"></v-img>
+            <v-card-title>{{ character.name }}</v-card-title>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
 
 export default {
+  components: { Navbar },
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data: () => ({
+
+  }),
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
